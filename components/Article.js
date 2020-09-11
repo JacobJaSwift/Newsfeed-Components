@@ -114,3 +114,61 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+
+
+
+function articleMaker(articleObj){
+  let articles = document.querySelector('.articles');
+  let myDiv = document.createElement('div');
+  myDiv.classList.add('article');
+
+  let myHeader = document.createElement('h2');
+  myHeader.textContent = articleObj.title;
+  myDiv.appendChild(myHeader);
+
+  let myP = document.createElement('p');
+  myP.classList.add('date');
+  myP.textContent = articleObj.date;
+  myDiv.appendChild(myP);
+  
+  let firstP = document.createElement('p');
+  firstP.textContent = articleObj.firstParagraph;
+  let secondP = document.createElement('p');
+  secondP.textContent = articleObj.secondParagraph;
+  let thirdP = document.createElement('p');
+  thirdP.textContent = articleObj.thirdParagraph;
+  
+  myDiv.appendChild(firstP);
+  myDiv.appendChild(secondP);
+  myDiv.appendChild(thirdP);
+
+  let mySpan = document.createElement('span');
+  mySpan.classList.add('expandButton');
+  mySpan.textContent = '+';
+  myDiv.appendChild(mySpan);
+
+  mySpan.addEventListener('click',()=>{
+    myDiv.classList.toggle("article-open");
+  })
+
+  return articles.appendChild(myDiv);
+}
+
+
+
+let newArticle = {
+  title: 'Jacob Swift',
+  date: 'September 9, 2020',
+  firstParagraph: `This is a first para`,
+
+  secondParagraph: `This is a second para`,
+
+  thirdParagraph: `This is a third para`
+}
+
+
+data.push(newArticle);
+
+data.forEach(item =>{
+  articleMaker(item)
+})
